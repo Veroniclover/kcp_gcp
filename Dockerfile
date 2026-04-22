@@ -1,6 +1,9 @@
 FROM alpine:latest
-EXPOSE 8080
 WORKDIR /app
-RUN wget https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip && unzip v2ray-linux-64.zip && rm v2ray-linux-64.zip && rm config.json
+RUN apk add --no-cache wget unzip ca-certificates \
+  && wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
+  && unzip Xray-linux-64.zip \
+  && rm Xray-linux-64.zip
 COPY config.json /app
-ENTRYPOINT ["./v2ray","run"]
+EXPOSE 8080
+CMD ["./xray", "run", "-c", "config.json"]
