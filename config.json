@@ -1,41 +1,35 @@
 {
-  "log": {
-    "loglevel": "warning"
-  },
-  "inbounds": [
-    {
-      "port": 8080,
-      "listen": "0.0.0.0",
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "1ef40695-9d5b-498e-aeaa-c44ab281ca61",
-            "alterId": 0
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "kcp",
-        "kcpSettings": {
-          "mtu": 1350,
-          "tti": 50,
-          "uplinkCapacity": 12,
-          "downlinkCapacity": 100,
-          "congestion": true,
-          "header": {
-            "type": "wireguard",
-            "seed": "c29tZXNlY3JldGFpbnNl", 
-            "length": 16
-          }
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 8080,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "1ef40695-9d5b-498e-aeaa-c44ab281ca61",
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "dest": "crashlytics.com:443",
+                    "serverNames": [
+                        "crashlytics.com",
+                        "firebase-settings.crashlytics.com"
+                    ],
+                    "privateKey": "eKS-gh5AXjEdJ3sGF7hDpUhFlKGJ615192I4no0yFGo",
+                    "shortIds": [ 
+                        "",
+                        "6ca30cd71da67803"
+                    ]
+                }
+            }
         }
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom"
-    }
-  ]
+    ]
 }
